@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello Page</title>
+    </head>
+    <body>
+        <div>
+            <h1>Search for users</h1>
+
+            <form id="myForm" action="/search" method="get">
+                <label for="inputField">Enter firstName:</label>
+                <input type="text" id="inputField" name="firstName">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        {{#searchComplete}}
+            {{#people}}
+                {{> user}}
+            {{/people}}
+            {{^people}}
+                <h1>No users found!</h1>
+            {{/people}}
+        {{/searchComplete}}
+        {{^searchComplete}}
+            <h1>Nothing to show</h1>
+        {{/searchComplete}}
+        <br/>
+        <div>
+            <h1>Create new user</h1>
+
+            <form id="myForm" action="/create" method="post">
+                <label for="inputField">Enter First name:</label>
+                <input type="text" id="inputField" name="firstName">
+
+                <label for="inputField">Enter Last name:</label>
+                <input type="text" id="inputField" name="lastName">
+
+                <label for="inputField">Enter Email:</label>
+                <input type="text" id="inputField" name="email">
+
+                <label for="inputField">Enter Address line 1:</label>
+                <input type="text" id="inputField" name="address1">
+
+                <label for="inputField">Enter Address line 2:</label>
+                <input type="text" id="inputField" name="address2">
+
+                <label for="inputField">Enter Town:</label>
+                <input type="text" id="inputField" name="town">
+
+                <label for="inputField">Enter Post code:</label>
+                <input type="text" id="inputField" name="postCode">
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        {{#creationSuccessMessage}}<h2>{{.}}</h2>{{/creationSuccessMessage}}
+        {{#errorMessage}}<h2>{{.}}</h2>{{/errorMessage}}
+    </body>
+</html>
